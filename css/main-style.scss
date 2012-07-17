@@ -1,0 +1,602 @@
+@charset "utf-8";
+@import "compass/css3";
+@import "compass/utilities";
+@import "compass/reset";
+
+// @extend #id;  (Erben)
+// border-radius Beispiele
+// Border --  @import "compass/css3/border-radius";
+//  @include border-radius(25px);
+//  @include border-top-right-radius(25px);
+//  @include border-corner-radius(top, left, 40px);
+
+// box-shadow Beispiele
+// Shadow
+//  @include single-box-shadow;
+//  @include box-shadow(red 2px 2px 10px);
+
+// text-shadow Beispiel
+//  @include text-shadow(darken(blue, 50%) 2px 2px);
+
+// Super Variable
+//  @mixin all_P {
+//    font: 14px/12px;
+//  }
+//
+//  mixin aufrufen
+//  @include all_P;#
+//  @include rounded();
+
+// Einige nützliche mixins
+@mixin shadow($size: 3px 3px 7px, $color: #000) {
+  @include box-shadow($color $size);
+}
+@mixin rounded($radius: 10px) {
+  @include border-radius($radius);
+}
+@mixin clearfix {
+  display: inline-block;
+  &:after {
+    content: ".";display: block;clear: both;visibility: hidden;line-height: 0;height: 0;}
+  html[xmlns] .clearfix {
+    display: block;}
+  * html .clearfix {
+    height: 1%;}
+}
+@mixin my-border-top($radius: 15px) {
+  @include border-top-right-radius($radius);
+  @include border-top-left-radius($radius);
+}
+
+// Variablen 
+$blue:#265258;
+$red:#DD4B39;
+$tabblue:#355E64;
+
+
+//   @include my-border-top(25px);
+
+
+@font-face {
+    font-family: 'OrbitronBlack';
+    src: url('font/orbitron-black-webfont.eot');
+    src: url('font/orbitron-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/orbitron-black-webfont.woff') format('woff'),
+         url('font/orbitron-black-webfont.ttf') format('truetype'),
+         url('font/orbitron-black-webfont.svg#OrbitronBlack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+header h1 {    
+  font-weight:bold;
+  font-family: 'OrbitronBlack'; 
+}
+
+
+/*
+
+*/
+/*
+      Site-Styles starts 
+*/
+html {
+  overflow-y: scroll; /* Horizontale Scrollbalken erzwingen */
+}
+
+body { 
+  margin: 0 auto;
+  color: #555;
+  font: normal 1em/150% Geneva, Helvetica, sans-serif, Verdana;
+  letter-spacing: 1px;
+  max-width: 1100px;
+  position:relative;
+  background: url('img/background.gif');
+}
+a {
+  text-decoration: none;
+  color: $blue;
+  &:focus,
+  &:hover,
+  &:active {
+    color: $red;
+  }
+}
+strong {
+  font-weight: bold;
+}
+/*
+ Wenn ein Element ein title-Attribut hat
+*/
+[title] {
+  cursor:help;
+}
+a [title], 
+a[title] {
+  cursor:pointer;
+}
+table {
+  margin-top: 15px;
+  border: 1px solid #355E64;
+  border-collapse: collapse;
+  th, 
+  td {
+    width: 150px;
+    height: 50px;
+    font-size: .8em;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid;  
+    cursor: default;
+  }
+  th {
+    height: 30px;
+    background: $tabblue;
+    color: #FFF;
+    border: 1px solid $tabblue;    
+    border-right: 1px solid #FFF;
+    &:nth-child(5) {
+      border-right: 1px solid $tabblue;
+    }
+  }
+  tfoot td {
+    height: 25px;
+    font-size:.8em;
+  }
+}
+/*
+  Skiplinks
+*/
+#skiplinks {position:absolute;top:-1000px;left:-1000px;}
+#skiplinks a:focus,
+#skiplinks a:active {
+  position:absolute;top:1003px;left:1040px;z-index:5;white-space:nowrap;min-width:250px;display:block;
+  padding:10px 15px;
+  color: #F2F2F3;
+  font-weight:bold;
+  background:#19363E;
+  border:1px solid #335F6B;
+  border-width:1px 2px;
+  @include rounded(5px);
+  outline:0;
+}
+/*
+  Flexibles Design und die Leistung von Medienabfragen nutzen 
+  http://googlewebmastercentral-de.blogspot.de/2012/06/flexibles-design-und-die-leistung-von.html?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed:+blogspot/vIRG+%28Webmaster-Zentrale+Blog%29
+*/
+
+/* screen */
+@media screen, projection 
+{
+        /*
+          Site-Header
+        */
+        header {
+          margin-bottom:45px;
+          padding: 0 20px 30px 15px;
+          color: #FFF;
+          position: relative;                 
+          border-bottom:5px solid #C1ECF5;    
+          background-color: #1e3940;
+          @include filter-gradient(#1e3940, #28555b, vertical);
+          $experimental-support-for-svg: true;
+          @include background-image(linear-gradient(top, #1e3940 0%,#28555b 100%));
+          @include box-shadow(0 5px 10px #555);
+          
+          h1 {
+            padding: 60px 0 10px 0;
+            font-size: 2em;
+            a {
+              color: #C1E7F2;
+              &:focus,
+              &:hover,
+              &:active {
+                color: #6DC7DB;
+              }
+            }
+          }
+          h2 {
+            font-size: 1em;
+          }          
+        }
+        
+        #inner_wrap {
+          margin: 20px 0;
+          padding: 0 15px;
+          overflow:hidden;
+        }
+        
+        /*
+          Sidebar
+        */
+        aside {
+          width: 23%;
+          float: left;
+          form {
+            margin:35px 0 40px;
+            legend {
+              margin-bottom:10px;
+              display:block;
+              width:100%;
+            }
+            p {
+              margin:0;
+              padding:10px 0 0;             
+              input {
+                padding:4px 4px;
+                &[type="text"] {
+                  width:95%;
+                  background: #FFF url("img/sprites.png") no-repeat right -366px;
+                  border-color:#779EC4;
+                  border-style:outset;
+                  border-radius:5px;
+                  color:#999;
+                  &:focus {
+                    color:#333;
+                    background: url("img/sprites.png") no-repeat right -366px;
+                    border-color:#AAA;
+                  }
+                }
+                &[type="submit"] {
+                  display:none;
+                }
+              }
+            }
+          }          
+          h2,h3,h4, fieldset legend {
+            margin-bottom:10px;
+            font-size: .7em;
+            font-weight: bold;
+            line-height: 130%;
+            color: #BAC5C7;
+            border-bottom: 1px solid;
+            cursor:default;
+          }
+          #network_tools {
+            margin-top:35px;
+            height:105px;
+            background: url("img/sprites.png") no-repeat 0 -250px;
+            > div {
+              display:inline;
+            }
+          }
+          nav {
+            li {
+              padding: 0;
+            }
+            a, span {
+              padding: 5px 0;
+              display: block;
+              border-bottom: 1px solid
+            }
+            span {
+              color: #82B2BC;
+            }
+          }
+        }
+        /*
+          Article
+        */
+        #breadcrumb {        
+            margin: 0;
+            padding: 0;
+            width: 73%;
+            float:right;
+            font-weight: bold;
+            font-size: .7em;   
+            line-height: 130%;  
+            color: #BAC5C7;
+            border-bottom: 1px solid;
+            h2, div {
+              margin: 0;
+              padding: 0;
+              display: inline;        
+            }
+        }
+        article {
+              float: right;
+              width: 73%;
+              h1, h2, h3, h4, h5, h6 {
+                padding: 25px 0;
+                font-size: 1.5em;
+                font-weight: bold;
+              }
+              h1 {
+                padding: 25px 0 0;
+              }
+              p {
+                margin: 25px 0; 
+              }
+              ul {
+                margin-left: 15px;
+                line-height: 170%;
+                list-style: disc;
+                ul {
+                  margin-left: 25px;
+                  list-style: square;
+                }
+              }
+              img {
+                margin:5px 5px 3px 15px;
+                float:right;
+                border:1px solid #275258;
+                border-radius:10px;            
+              }
+              blockquote {
+                padding: 15px 10px 5px 15px;
+                font-size: 1.1em;
+                font-weight: bold;
+                line-height: 140%;
+                color: #B6B6B6;
+                background-color: #ffffff;
+                @include filter-gradient(#ffffff, #ededed, vertical);
+                @include background-image(linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%));
+                border: 1px solid;
+                @include rounded(5px);
+                cite {
+                  margin-right: 15px;
+                  display: block;
+                  text-align: right;
+                  font-size: .7em;
+                  a {
+                    border-bottom: 1px dashed;
+                    &:focus,
+                    &:hover,
+                    &:active {
+                      border-bottom-style: solid;
+                    }
+                  }
+                }
+              }
+        }
+        /*
+          Footer
+        */
+        footer {
+          margin:45px 15px 0;
+          padding: 0 10px 0;
+          font-size: .8em;
+          color: #FFF;
+          text-align:center;
+          border-top: 1px solid #112426;
+          background-color: #38636a;
+          /*
+              http://www.colorzilla.com/gradient-editor/
+          */
+          @include filter-gradient(#38636a, #102224, vertical);
+          @include background-image(linear-gradient(top, #38636a 0%,#102224 100%));
+          @include my-border-top(15px);
+          section {
+              display: inline-block;
+              vertical-align: top;
+              margin: 0;
+              padding: 15px 0;
+              width: 24%;
+              text-align:left;
+              h1, h2, h3, h4, h5 {
+                font-weight:bold;
+                padding:5px 0 10px;
+              }
+              h3 {
+                padding-top:10px;
+              }
+              &.about_us p {
+                padding-right: 15px;
+              }
+              .org {
+                font-weight:bold;
+              }
+              #map_button {
+                margin-top: 15px;
+                display: block;
+                text-indent: -9999em;
+                overflow: hidden;
+                width: 180px;
+                height: 119px;
+                border: 1px solid #000;
+                background: url('img/sprites.png') no-repeat 0 -102px;
+                @include rounded(5px);
+              }
+          }
+          a {
+            color: #F6F6F6;
+            border-bottom: 1px dashed;
+            &:focus,
+            &:hover,
+            &:active {
+              border-bottom-style: solid;
+            }
+          }
+          hr {
+            margin: 10px 15px 0;             
+            @include opacity(.2);
+          }
+          .copyright {
+            margin:0 auto;
+            padding:0;
+            display:block;
+            color:#707C7D;         
+            font-size:.9em; 
+            text-align: center;
+            cursor:default;
+          }
+        }/* footer ends */
+ 
+        #social_buttons 
+          {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            li {
+              margin-right: 5px;
+              display: inline;
+              a {
+                display: inline-block;
+                width: 32px;
+                height: 32px;
+                text-indent: -9999em;
+                overflow: hidden;
+                background: url('img/sprites.png') no-repeat -999px -999px;
+                @include opacity(.8);
+                &#feed_button {
+                  background-position: 0 0;
+                }
+                &#fb_button {
+                  background-position: 0 -33px;
+                }
+                &#gp_button {
+                  background-position: 0 -66px;
+                }
+                &#tw_button {
+                  background-position: -33px 0;
+                }
+                &:focus,
+                &:hover,
+                &:active {
+                  @include opacity(1);         
+                }
+              }
+            }
+          }
+            
+}/* screen, projection ends */
+
+/*
+  Drucklayout
+*/
+@media print 
+{
+        header h2, 
+        aside, 
+        #breadcrumb,
+        .about_us,
+        .partner_sites,
+        #footer_menu,
+        #map_button,        
+        .copyright,
+        #social_buttons,
+        hr {
+          display: none !important;
+        }
+        h1 {
+          margin-bottom:35px;
+          font-size: 1.4em;
+          font-weight: bold;
+        }
+        h2, h3, h4, h5, h6, p, table, ul {
+          margin: 25px 0;
+        }
+        h2, h3, h4, h5, h6, strong {
+          font-weight:bold;
+        }
+        ul {
+          margin-left: 20px;
+        }
+        a {
+          color: #000;
+          text-decoration: none;
+        }
+        address {
+          padding: 2px 0;
+        }
+        .contact_to,
+        .email {
+          margin-top: 10px;
+        }
+}/* print ends */
+
+/* 
+  vmtl. Tablet
+*/
+@media screen and (max-width: 800px) 
+{
+        footer {
+          margin-left:0;
+          margin-right:0;
+          section {
+              width: 45%;
+          }
+        }
+}/* Tablet ends */
+
+/* 
+  Smartphone
+*/
+@media screen and (max-width: 600px) {
+        body {
+          font-size: 20px;
+        }
+        header {
+          margin-bottom:40px;
+          padding-right: 5px;
+          font-size: 85%;
+
+          &:before {
+            padding:0 5px;
+            content:"Mobile Version";
+            position:absolute;
+            top:5px;
+            left:10;
+            font-size:.8em;
+            color:#707C7D;
+            border:1px solid;
+            line-height:140%;
+            cursor:default;
+            border-radius:5px;
+            @include opacity(.8);
+          }
+        }
+        aside {
+          width: auto;
+          float: none;
+          form {
+            margin-bottom:30px;
+            legend {
+              display:none;
+            }
+            p {
+              input[type="text"] {
+                padding:9px 5px;
+                background:none;
+                font-size:1.1em;
+                color:#BBCEE1;
+                &:focus {
+                  background:none;
+                  border-color:$blue;
+                  color:#333;
+                  @include box-shadow(#949494 0 0 10px);
+                }
+              }
+            }
+          }
+          nav a,
+          nav span {
+          }
+        }
+        aside:last-child {
+          margin-top:75px;
+        }
+        #breadcrumb {
+           margin: 10px 0 30px;
+           padding: 0;
+           width:auto;
+           float:none;
+        }        
+        article {
+          margin-left: 0;
+          padding: 0;
+          width:auto;
+          float:none;
+          img {
+            margin: 0;
+            float:none;
+          }
+        }        
+        footer {
+          text-align:left;
+          section {
+            width: auto;
+            display:block;
+          }
+        }
+}/* Iphone ends */
+/* That's all folks! */
