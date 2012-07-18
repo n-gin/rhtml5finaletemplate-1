@@ -14,6 +14,8 @@
 @mixin headlinebefore {
     display:block;
     padding:1px 15px;
+    min-width:90px;
+    text-align:center;
     line-height:140%;
     font-size:.8em;
     font-weight:bold;
@@ -50,16 +52,16 @@
 html {
   overflow-y: scroll; /* Horizontale Scrollbalken erzwingen */
   background: url('img/background.gif');
+  padding:0 35px;  
 }
 
 body { 
-  margin: 65px auto;
   color: #555;
   font: normal 1em/150% Geneva, Helvetica, sans-serif, Verdana;
   letter-spacing: 1px;
-  width: 90%;
   max-width: 1100px;
   @include container;
+  margin: 50px auto;
   background: #F5F5F5;
   &:before {
     @include headlinebefore;
@@ -74,13 +76,19 @@ a {
     color: #F00;
   }
 }
-h1,h2,h3,h4,h5,strong {
+h1,h2,h3,h4,h5,strong,legend,.org {
   font-weight: bold;
 }
 h1,h2,h3,h4,h5 {
   margin:10px 0;
 }
-
+blockquote {
+  padding-left:25px;
+  padding-right:25px;
+}
+hr {
+  display:none;
+}
 hgroup,
 #inner_wrap,
 #skiplinks,
@@ -91,7 +99,8 @@ article,
 footer,
 #social_buttons {
   @include container;
-  &:before {
+  &:before,
+  &:after {
     @include headlinebefore;
   }
 }
@@ -115,13 +124,22 @@ nav,
 #network_tools {
     @include footer_container;
 }
-
+#network_tools div {
+    display:block !important
+}
 article {
   h1, h2, h3, h4, h5, h6, p, table, ul, blockqute {
     margin:25px 0;
   }
   ul {
     margin:10px 20px;
+    list-style-type:disc;
+  }
+  img {
+    margin:0 15px 15px;
+    float:right;
+    border:1px solid;
+    border-radius:5px;
   }
   table {
     border: 1px solid #355E64;
@@ -133,7 +151,14 @@ article {
     border: 1px solid #355E64;
   }
 }
-
+#breadcrumb {
+  h2, div {
+    display:inline;
+  }
+}
+/*
+  Content für die Box-Überschriften
+*/
 body:before {
   content:'Body';
 }
@@ -145,6 +170,11 @@ header:before {
 }
 #inner_wrap:before {
   content:'Inner Wrap';
+}
+#inner_wrap:after {
+  content:'Inner Wrap ends';
+  top:auto;
+  bottom:-10px;
 }
 aside:before {
   content:'1. Sidebar';
@@ -160,6 +190,11 @@ article:before {
 }
 footer:before {
   content:'Footer';
+}
+footer:after {
+  content:'Footer ends';
+  top:auto;
+  bottom:-10px;
 }
 #social_buttons:before {
   content:'Social Networks';
