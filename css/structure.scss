@@ -1,0 +1,166 @@
+@charset "utf-8";
+@import "compass/css3";
+@import "compass/utilities";
+@import "compass/reset";
+
+// @extend #id;  (Erben)
+//  @include border-radius(25px);
+// Super Variable
+//  @mixin all_P {
+//    font: 14px/12px;
+//  }
+//  @include all_P;
+ 
+@mixin headlinebefore {
+    display:block;
+    padding:1px 15px;
+    line-height:140%;
+    font-size:.8em;
+    font-weight:bold;
+    position:absolute;
+    top:-12px;
+    right:35px;
+    background:#AAA;
+    color:#FFF;
+    cursor:default;
+    border:1px solid #999;
+    border-radius:10px;
+    box-shadow:0 0 5px #999;
+}
+@mixin container {
+  margin:80px 35px;
+  padding:15px;
+  position:relative;  
+  border:2px solid #BBB;
+  background:#FFF;
+  border-radius:15px;
+  box-shadow:0 0 5px #999;
+}
+// sections
+@mixin footer_container {
+    margin:25px 15px;
+    padding:15px;
+    border:1px solid;
+    border-radius:15px;
+    box-shadow:0 0 5px #999;
+}
+/*
+      Styles starts 
+*/
+html {
+  overflow-y: scroll; /* Horizontale Scrollbalken erzwingen */
+  background: url('img/background.gif');
+}
+
+body { 
+  margin: 65px auto;
+  color: #555;
+  font: normal 1em/150% Geneva, Helvetica, sans-serif, Verdana;
+  letter-spacing: 1px;
+  width: 90%;
+  max-width: 1100px;
+  @include container;
+  background: #F5F5F5;
+  &:before {
+    @include headlinebefore;
+  }
+}
+a {
+  text-decoration: none;
+  color: #336699;
+  &:focus,
+  &:hover,
+  &:active {
+    color: #F00;
+  }
+}
+h1,h2,h3,h4,h5,strong {
+  font-weight: bold;
+}
+h1,h2,h3,h4,h5 {
+  margin:10px 0;
+}
+
+hgroup,
+#inner_wrap,
+#skiplinks,
+header,
+aside,
+#breadcrumb,
+article,
+footer,
+#social_buttons {
+  @include container;
+  &:before {
+    @include headlinebefore;
+  }
+}
+header,
+footer,
+#inner_wrap {
+  background:#EEE;
+}
+hgroup {
+  margin:15px 20px;
+}
+footer {
+  > section {
+    @include footer_container;
+    border-color:#9D4738;
+    background:#FFF;
+  }
+}
+nav,
+#search,
+#network_tools {
+    @include footer_container;
+}
+
+article {
+  h1, h2, h3, h4, h5, h6, p, table, ul, blockqute {
+    margin:25px 0;
+  }
+  ul {
+    margin:10px 20px;
+  }
+  table {
+    border: 1px solid #355E64;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding:10px;
+    text-align:center;
+    border: 1px solid #355E64;
+  }
+}
+
+body:before {
+  content:'Body';
+}
+#skiplinks:before {
+  content:'Skiplinks';
+}
+header:before {
+  content:'Header';
+}
+#inner_wrap:before {
+  content:'Inner Wrap';
+}
+aside:before {
+  content:'1. Sidebar';
+}
+aside:last-child:before {
+  content:'2. Sidebar';
+}
+#breadcrumb:before {
+  content:'Breadcrumbs';
+}
+article:before {
+  content:'Inhalt';
+}
+footer:before {
+  content:'Footer';
+}
+#social_buttons:before {
+  content:'Social Networks';
+}
