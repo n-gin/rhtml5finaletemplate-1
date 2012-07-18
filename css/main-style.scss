@@ -4,59 +4,33 @@
 @import "compass/reset";
 
 // @extend #id;  (Erben)
-// border-radius Beispiele
-// Border --  @import "compass/css3/border-radius";
 //  @include border-radius(25px);
-//  @include border-top-right-radius(25px);
-//  @include border-corner-radius(top, left, 40px);
-
-// box-shadow Beispiele
-// Shadow
-//  @include single-box-shadow;
-//  @include box-shadow(red 2px 2px 10px);
-
-// text-shadow Beispiel
-//  @include text-shadow(darken(blue, 50%) 2px 2px);
-
 // Super Variable
 //  @mixin all_P {
 //    font: 14px/12px;
 //  }
-//
-//  mixin aufrufen
-//  @include all_P;#
-//  @include rounded();
-
-// Einige nützliche mixins
-@mixin shadow($size: 3px 3px 7px, $color: #000) {
-  @include box-shadow($color $size);
+//  @include all_P;
+   
+// Überschriften der einzelnen Module vereinheitlichen
+@mixin headline {
+  margin-bottom:10px;
+  font-size: .7em;
+  font-weight: bold;
+  line-height: 130%;
+  color: #BAC5C7;
+  border-bottom: 1px solid;
+  cursor:default;
 }
-@mixin rounded($radius: 10px) {
-  @include border-radius($radius);
-}
-@mixin clearfix {
-  display: inline-block;
-  &:after {
-    content: ".";display: block;clear: both;visibility: hidden;line-height: 0;height: 0;}
-  html[xmlns] .clearfix {
-    display: block;}
-  * html .clearfix {
-    height: 1%;}
-}
-@mixin my-border-top($radius: 15px) {
-  @include border-top-right-radius($radius);
-  @include border-top-left-radius($radius);
-}
-
+  
 // Variablen 
 $blue:#265258;
 $red:#DD4B39;
 $tabblue:#355E64;
+$lightblue:#C1E7F2;
 
-
-//   @include my-border-top(25px);
-
-
+/*
+  Font laden
+*/
 @font-face {
     font-family: 'OrbitronBlack';
     src: url('font/orbitron-black-webfont.eot');
@@ -73,11 +47,9 @@ header h1 {
 }
 
 
-/*
 
-*/
 /*
-      Site-Styles starts 
+      Styles starts 
 */
 html {
   overflow-y: scroll; /* Horizontale Scrollbalken erzwingen */
@@ -89,7 +61,7 @@ body {
   font: normal 1em/150% Geneva, Helvetica, sans-serif, Verdana;
   letter-spacing: 1px;
   max-width: 1100px;
-  position:relative;
+  position: relative;
   background: url('img/background.gif');
 }
 a {
@@ -115,7 +87,7 @@ a[title] {
   cursor:pointer;
 }
 table {
-  margin-top: 15px;
+  margin: 15px 0;
   border: 1px solid #355E64;
   border-collapse: collapse;
   th, 
@@ -140,24 +112,30 @@ table {
   }
   tfoot td {
     height: 25px;
-    font-size:.8em;
+    font-size: .8em;
   }
 }
 /*
   Skiplinks
 */
-#skiplinks {position:absolute;top:-1000px;left:-1000px;}
+#skiplinks {position: absolute;top: -1000px;left: -1000px;}
 #skiplinks a:focus,
 #skiplinks a:active {
-  position:absolute;top:1003px;left:1040px;z-index:5;white-space:nowrap;min-width:250px;display:block;
-  padding:10px 15px;
+  position: absolute;
+  top: 1005px;
+  left: 1015px;
+  z-index: 5;
+  white-space: nowrap;
+  min-width: 250px;
+  display: block;
+  padding: 5px 15px;
   color: #F2F2F3;
-  font-weight:bold;
-  background:#19363E;
-  border:1px solid #335F6B;
-  border-width:1px 2px;
-  @include rounded(5px);
-  outline:0;
+  font-weight: bold;
+  background: #19363E;
+  border: 1px solid $lightblue;
+  border-width: 1px 2px;
+  border-radius: 10px;
+  outline: 0;
 }
 /*
   Flexibles Design und die Leistung von Medienabfragen nutzen 
@@ -171,11 +149,11 @@ table {
           Site-Header
         */
         header {
-          margin-bottom:45px;
+          margin-bottom: 45px;
           padding: 0 20px 30px 15px;
           color: #FFF;
           position: relative;                 
-          border-bottom:5px solid #C1ECF5;    
+          border-bottom: 5px solid $lightblue;    
           background-color: #1e3940;
           @include filter-gradient(#1e3940, #28555b, vertical);
           $experimental-support-for-svg: true;
@@ -186,7 +164,7 @@ table {
             padding: 60px 0 10px 0;
             font-size: 2em;
             a {
-              color: #C1E7F2;
+              color: $lightblue;
               &:focus,
               &:hover,
               &:active {
@@ -202,7 +180,7 @@ table {
         #inner_wrap {
           margin: 20px 0;
           padding: 0 15px;
-          overflow:hidden;
+          overflow: hidden;
         }
         
         /*
@@ -212,51 +190,42 @@ table {
           width: 23%;
           float: left;
           form {
-            margin:35px 0 40px;
+            margin: 35px 0 40px;
             legend {
-              margin-bottom:10px;
-              display:block;
-              width:100%;
+              margin-bottom: 10px;
+              display: block;
+              width: 100%;
             }
             p {
-              margin:0;
-              padding:10px 0 0;             
+              margin: 0;
+              padding: 10px 0 0;             
               input {
                 padding:4px 4px;
                 &[type="text"] {
-                  width:95%;
+                  width: 95%;
                   background: #FFF url("img/sprites.png") no-repeat right -366px;
-                  border-color:#779EC4;
-                  border-style:outset;
-                  border-radius:5px;
-                  color:#999;
+                  border-color: #779EC4;
+                  border-style: outset;
+                  border-radius: 5px;
+                  color: #999;
                   &:focus {
-                    color:#333;
+                    color: #333;
                     background: url("img/sprites.png") no-repeat right -366px;
-                    border-color:#AAA;
+                    border-color: #AAA;
                   }
-                }
-                &[type="submit"] {
-                  display:none;
                 }
               }
             }
           }          
-          h2,h3,h4, fieldset legend {
-            margin-bottom:10px;
-            font-size: .7em;
-            font-weight: bold;
-            line-height: 130%;
-            color: #BAC5C7;
-            border-bottom: 1px solid;
-            cursor:default;
+          h2, h3, h4, fieldset legend {
+            @include headline;
           }
           #network_tools {
-            margin-top:35px;
-            height:105px;
+            margin-top: 35px;
+            height: 105px;
             background: url("img/sprites.png") no-repeat 0 -250px;
             > div {
-              display:inline;
+              display: inline;
             }
           }
           nav {
@@ -277,15 +246,9 @@ table {
           Article
         */
         #breadcrumb {        
-            margin: 0;
-            padding: 0;
             width: 73%;
-            float:right;
-            font-weight: bold;
-            font-size: .7em;   
-            line-height: 130%;  
-            color: #BAC5C7;
-            border-bottom: 1px solid;
+            float: right;
+            @include headline;       
             h2, div {
               margin: 0;
               padding: 0;
@@ -328,10 +291,11 @@ table {
                 line-height: 140%;
                 color: #B6B6B6;
                 background-color: #ffffff;
-                @include filter-gradient(#ffffff, #ededed, vertical);
-                @include background-image(linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%));
                 border: 1px solid;
-                @include rounded(5px);
+                border-radius:10px;
+                @include filter-gradient(#ffffff, #ededed, vertical);
+                @include background-image(linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%));       
+                         
                 cite {
                   margin-right: 15px;
                   display: block;
@@ -364,7 +328,9 @@ table {
           */
           @include filter-gradient(#38636a, #102224, vertical);
           @include background-image(linear-gradient(top, #38636a 0%,#102224 100%));
-          @include my-border-top(15px);
+          border-top-right-radius:20px;
+          border-top-left-radius:20px;
+          
           section {
               display: inline-block;
               vertical-align: top;
@@ -394,7 +360,7 @@ table {
                 height: 119px;
                 border: 1px solid #000;
                 background: url('img/sprites.png') no-repeat 0 -102px;
-                @include rounded(5px);
+                border-radius:5px;
               }
           }
           a {

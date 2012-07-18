@@ -54,6 +54,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
+/*
+  Font laden
+*/
 @font-face {
   font-family: 'OrbitronBlack';
   src: url("font/orbitron-black-webfont.eot");
@@ -68,10 +71,7 @@ header h1 {
 }
 
 /*
-
-*/
-/*
-      Site-Styles starts 
+      Styles starts 
 */
 html {
   overflow-y: scroll;
@@ -113,7 +113,7 @@ a[title] {
 }
 
 table {
-  margin-top: 15px;
+  margin: 15px 0;
   border: 1px solid #355E64;
   border-collapse: collapse;
 }
@@ -154,24 +154,19 @@ table tfoot td {
 #skiplinks a:focus,
 #skiplinks a:active {
   position: absolute;
-  top: 1003px;
-  left: 1040px;
+  top: 1005px;
+  left: 1015px;
   z-index: 5;
   white-space: nowrap;
   min-width: 250px;
   display: block;
-  padding: 10px 15px;
+  padding: 5px 15px;
   color: #F2F2F3;
   font-weight: bold;
   background: #19363E;
-  border: 1px solid #335F6B;
+  border: 1px solid #c1e7f2;
   border-width: 1px 2px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
   outline: 0;
 }
 
@@ -189,7 +184,7 @@ table tfoot td {
     padding: 0 20px 30px 15px;
     color: #FFF;
     position: relative;
-    border-bottom: 5px solid #C1ECF5;
+    border-bottom: 5px solid #c1e7f2;
     background-color: #1e3940;
     *zoom: 1;
     filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF1E3940', endColorstr='#FF28555B');
@@ -211,7 +206,7 @@ table tfoot td {
     font-size: 2em;
   }
   header h1 a {
-    color: #C1E7F2;
+    color: #c1e7f2;
   }
   header h1 a:focus, header h1 a:hover, header h1 a:active {
     color: #6DC7DB;
@@ -261,9 +256,6 @@ table tfoot td {
     background: url("img/sprites.png") no-repeat right -366px;
     border-color: #AAA;
   }
-  aside form p input[type="submit"] {
-    display: none;
-  }
   aside h2, aside h3, aside h4, aside fieldset legend {
     margin-bottom: 10px;
     font-size: .7em;
@@ -297,15 +289,15 @@ table tfoot td {
     Article
   */
   #breadcrumb {
-    margin: 0;
-    padding: 0;
     width: 73%;
     float: right;
-    font-weight: bold;
+    margin-bottom: 10px;
     font-size: .7em;
+    font-weight: bold;
     line-height: 130%;
     color: #BAC5C7;
     border-bottom: 1px solid;
+    cursor: default;
   }
   #breadcrumb h2, #breadcrumb div {
     margin: 0;
@@ -350,6 +342,8 @@ table tfoot td {
     line-height: 140%;
     color: #B6B6B6;
     background-color: #ffffff;
+    border: 1px solid;
+    border-radius: 10px;
     *zoom: 1;
     filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFFFFFF', endColorstr='#FFEDEDED');
     background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjUwJSIgeTE9IjAlIiB4Mj0iNTAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIvPjxzdG9wIG9mZnNldD0iNDclIiBzdG9wLWNvbG9yPSIjZjZmNmY2Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZWRlZGVkIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
@@ -360,13 +354,6 @@ table tfoot td {
     background-image: -o-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
     background-image: -ms-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
     background-image: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-    border: 1px solid;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -o-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    border-radius: 5px;
   }
   article blockquote cite {
     margin-right: 15px;
@@ -405,18 +392,8 @@ table tfoot td {
     background-image: -o-linear-gradient(top, #38636a 0%, #102224 100%);
     background-image: -ms-linear-gradient(top, #38636a 0%, #102224 100%);
     background-image: linear-gradient(top, #38636a 0%, #102224 100%);
-    -moz-border-radius-topright: 15px;
-    -webkit-border-top-right-radius: 15px;
-    -o-border-top-right-radius: 15px;
-    -ms-border-top-right-radius: 15px;
-    -khtml-border-top-right-radius: 15px;
-    border-top-right-radius: 15px;
-    -moz-border-radius-topleft: 15px;
-    -webkit-border-top-left-radius: 15px;
-    -o-border-top-left-radius: 15px;
-    -ms-border-top-left-radius: 15px;
-    -khtml-border-top-left-radius: 15px;
-    border-top-left-radius: 15px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
   }
   footer section {
     display: inline-block;
@@ -448,11 +425,6 @@ table tfoot td {
     height: 119px;
     border: 1px solid #000;
     background: url("img/sprites.png") no-repeat 0 -102px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -o-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -khtml-border-radius: 5px;
     border-radius: 5px;
   }
   footer a {
